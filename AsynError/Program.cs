@@ -11,7 +11,8 @@ namespace AsynError
         static void Main(string[] args)
         {
             //DontHandle1();
-            DontHandle();
+            //DontHandle();
+            ShowAggregatedException();
             Console.ReadLine();
         }
 
@@ -42,6 +43,25 @@ namespace AsynError
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        private static async void ShowAggregatedException()
+        {
+            Task taskResult = null;
+            try
+            {
+                Task t1 = ThrowAfter(2000, "first");
+                Task t2 = ThrowAfter(1000, "second");
+                await (taskResult = Task.WhenAll(t1, t2));
+            }
+            catch ( Exception ex)
+            {
+                Console.WriteLine("handled {0}", ex.Message);
+                foreach (var ex1 in taskResult.Exception.InnerExceptions)
+                {
+                    Console.WriteLine("inner exception {0}", ex1.Message);
+                }
             }
         }
     }

@@ -10,9 +10,10 @@ namespace AsynError
     {
         static void Main(string[] args)
         {
-            //DontHandle1();
-            //DontHandle();
+            DontHandle1();
+            DontHandle();
             ShowAggregatedException();
+
             Console.ReadLine();
         }
 

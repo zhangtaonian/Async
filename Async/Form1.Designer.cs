@@ -32,8 +32,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_apm = new System.Windows.Forms.Button();
             this.btn_Eap = new System.Windows.Forms.Button();
-            this.rtb_State = new System.Windows.Forms.RichTextBox();
             this.rtb_State2 = new System.Windows.Forms.RichTextBox();
+            this.btn_Pause = new System.Windows.Forms.Button();
+            this.pgbar = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btn_downloadtap = new System.Windows.Forms.Button();
+            this.btn_pausetap = new System.Windows.Forms.Button();
+            this.btn_DownLoadAsync = new System.Windows.Forms.Button();
+            this.btn_PauseAsync = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txt_loadadd.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,7 +47,7 @@
             // 
             this.txt_loadadd.Location = new System.Drawing.Point(155, 12);
             this.txt_loadadd.Name = "txt_loadadd";
-            this.txt_loadadd.Size = new System.Drawing.Size(294, 28);
+            this.txt_loadadd.Size = new System.Drawing.Size(462, 28);
             this.txt_loadadd.TabIndex = 0;
             // 
             // label1
@@ -55,7 +61,7 @@
             // 
             // btn_apm
             // 
-            this.btn_apm.Location = new System.Drawing.Point(43, 71);
+            this.btn_apm.Location = new System.Drawing.Point(37, 142);
             this.btn_apm.Name = "btn_apm";
             this.btn_apm.Size = new System.Drawing.Size(125, 31);
             this.btn_apm.TabIndex = 2;
@@ -65,36 +71,97 @@
             // 
             // btn_Eap
             // 
-            this.btn_Eap.Location = new System.Drawing.Point(533, 61);
+            this.btn_Eap.Location = new System.Drawing.Point(37, 217);
             this.btn_Eap.Name = "btn_Eap";
             this.btn_Eap.Size = new System.Drawing.Size(125, 31);
             this.btn_Eap.TabIndex = 2;
-            this.btn_Eap.Text = "下载EAp";
+            this.btn_Eap.Text = "下载EAP";
             this.btn_Eap.UseVisualStyleBackColor = true;
-            // 
-            // rtb_State
-            // 
-            this.rtb_State.Location = new System.Drawing.Point(43, 118);
-            this.rtb_State.Name = "rtb_State";
-            this.rtb_State.Size = new System.Drawing.Size(365, 333);
-            this.rtb_State.TabIndex = 3;
-            this.rtb_State.Text = "";
+            this.btn_Eap.Click += new System.EventHandler(this.btn_Eap_Click);
             // 
             // rtb_State2
             // 
-            this.rtb_State2.Location = new System.Drawing.Point(533, 118);
+            this.rtb_State2.Location = new System.Drawing.Point(362, 110);
             this.rtb_State2.Name = "rtb_State2";
-            this.rtb_State2.Size = new System.Drawing.Size(365, 333);
+            this.rtb_State2.Size = new System.Drawing.Size(411, 346);
             this.rtb_State2.TabIndex = 3;
             this.rtb_State2.Text = "";
+            // 
+            // btn_Pause
+            // 
+            this.btn_Pause.Location = new System.Drawing.Point(198, 217);
+            this.btn_Pause.Name = "btn_Pause";
+            this.btn_Pause.Size = new System.Drawing.Size(125, 31);
+            this.btn_Pause.TabIndex = 2;
+            this.btn_Pause.Text = "暂停EAP";
+            this.btn_Pause.UseVisualStyleBackColor = true;
+            this.btn_Pause.Click += new System.EventHandler(this.btn_Pause_Click);
+            // 
+            // pgbar
+            // 
+            this.pgbar.Location = new System.Drawing.Point(37, 65);
+            this.pgbar.Name = "pgbar";
+            this.pgbar.Size = new System.Drawing.Size(580, 26);
+            this.pgbar.TabIndex = 4;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // btn_downloadtap
+            // 
+            this.btn_downloadtap.Location = new System.Drawing.Point(37, 288);
+            this.btn_downloadtap.Name = "btn_downloadtap";
+            this.btn_downloadtap.Size = new System.Drawing.Size(125, 31);
+            this.btn_downloadtap.TabIndex = 2;
+            this.btn_downloadtap.Text = "下载TAP";
+            this.btn_downloadtap.UseVisualStyleBackColor = true;
+            this.btn_downloadtap.Click += new System.EventHandler(this.btn_downloadtap_Click);
+            // 
+            // btn_pausetap
+            // 
+            this.btn_pausetap.Location = new System.Drawing.Point(198, 288);
+            this.btn_pausetap.Name = "btn_pausetap";
+            this.btn_pausetap.Size = new System.Drawing.Size(125, 31);
+            this.btn_pausetap.TabIndex = 2;
+            this.btn_pausetap.Text = "暂停TAP";
+            this.btn_pausetap.UseVisualStyleBackColor = true;
+            this.btn_pausetap.Click += new System.EventHandler(this.btn_pausetap_Click);
+            // 
+            // btn_DownLoadAsync
+            // 
+            this.btn_DownLoadAsync.Location = new System.Drawing.Point(37, 361);
+            this.btn_DownLoadAsync.Name = "btn_DownLoadAsync";
+            this.btn_DownLoadAsync.Size = new System.Drawing.Size(125, 31);
+            this.btn_DownLoadAsync.TabIndex = 2;
+            this.btn_DownLoadAsync.Text = "下载Async";
+            this.btn_DownLoadAsync.UseVisualStyleBackColor = true;
+            this.btn_DownLoadAsync.Click += new System.EventHandler(this.btn_DownLoadAsync_Click);
+            // 
+            // btn_PauseAsync
+            // 
+            this.btn_PauseAsync.Location = new System.Drawing.Point(198, 361);
+            this.btn_PauseAsync.Name = "btn_PauseAsync";
+            this.btn_PauseAsync.Size = new System.Drawing.Size(125, 31);
+            this.btn_PauseAsync.TabIndex = 2;
+            this.btn_PauseAsync.Text = "暂停Async";
+            this.btn_PauseAsync.UseVisualStyleBackColor = true;
+            this.btn_PauseAsync.Click += new System.EventHandler(this.btn_PauseAsync_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(954, 487);
+            this.ClientSize = new System.Drawing.Size(808, 487);
+            this.Controls.Add(this.pgbar);
             this.Controls.Add(this.rtb_State2);
-            this.Controls.Add(this.rtb_State);
+            this.Controls.Add(this.btn_Pause);
+            this.Controls.Add(this.btn_pausetap);
+            this.Controls.Add(this.btn_PauseAsync);
+            this.Controls.Add(this.btn_DownLoadAsync);
+            this.Controls.Add(this.btn_downloadtap);
             this.Controls.Add(this.btn_Eap);
             this.Controls.Add(this.btn_apm);
             this.Controls.Add(this.label1);
@@ -113,8 +180,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_apm;
         private System.Windows.Forms.Button btn_Eap;
-        private System.Windows.Forms.RichTextBox rtb_State;
         private System.Windows.Forms.RichTextBox rtb_State2;
+        private System.Windows.Forms.Button btn_Pause;
+        private System.Windows.Forms.ProgressBar pgbar;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btn_downloadtap;
+        private System.Windows.Forms.Button btn_pausetap;
+        private System.Windows.Forms.Button btn_DownLoadAsync;
+        private System.Windows.Forms.Button btn_PauseAsync;
     }
 }
 
